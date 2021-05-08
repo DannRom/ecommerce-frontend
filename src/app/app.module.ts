@@ -7,17 +7,23 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { HttpClientModule } from '@angular/common/http';
 import { ProductService } from './services/product.service';
 import { FooterComponent } from './layout/footer/footer.component';
+import { HeaderComponent } from './layout/header/header.component';
+import { AppRoutingModule } from './app-routing.module';
+import { BodyComponent } from './layout/body/body.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductListComponent,
-    FooterComponent
+    FooterComponent,
+    HeaderComponent,
+    BodyComponent
   ],
   imports: [
     BrowserModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]
