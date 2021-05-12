@@ -10,6 +10,7 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BodyComponent } from './layout/body/body.component';
+import { ProductCategoryMenuComponent } from './components/product-category-menu/product-category-menu.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { BodyComponent } from './layout/body/body.component';
     ProductListComponent,
     FooterComponent,
     HeaderComponent,
-    BodyComponent
+    BodyComponent,
+    ProductCategoryMenuComponent
   ],
   imports: [
     BrowserModule,
