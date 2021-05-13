@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
-    <div class="col-3 m-3 border rounded shadow-sm" *ngFor="let tempProduct of products">
+
+    <div *ngFor="let tempProduct of products" class="col-3 m-3 border rounded shadow-sm">
       <div><img src="{{ tempProduct.imageUrl }}" height="100%" width="100%" alt="product image"/></div>
       <strong>{{ tempProduct.name }}</strong>
       <div>
@@ -9,5 +10,12 @@
       </div>
       <a href="#" class="btn btn-primary m-2 float-right">Add to cart</a>
     </div>
+
+    <!--The question mark guards against nulls/undefined values. It is called a safe navigation operator.-->
+    <!-- The role attribute is for assistive technologies-->
+    <div *ngIf="products?.length == 0" class="alert alert-warning col" role="alert">
+      No products found.
+    </div>
+
   </div>
 </div>
