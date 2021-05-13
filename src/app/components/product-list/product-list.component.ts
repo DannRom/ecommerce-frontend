@@ -12,19 +12,38 @@ export class ProductListComponent implements OnInit {
 
   products: Product[] | undefined;
   currentCategoryId: number | undefined;
+  searchMode: boolean | undefined;
 
   // Inject ProductService
   constructor(private productService: ProductService,
               private route: ActivatedRoute) { }
 
+  // Subscribe will execute in an asynchronous fashion.
   ngOnInit(): void {
     this.route.paramMap.subscribe(() => {
       this.listProducts();
     });
   }
 
-  // Subscribe will execute in an asynchronous fashion.
   private listProducts(): void {
+    // check if the key word is there
+    this.searchMode = this.route.snapshot.paramMap.has('keyword');
+    if (this.searchMode) {
+      this.handleSearchProducts();
+    }
+    else {
+      this.handleListProducts();
+    }
+  }
+
+  handleSearchProducts(): void {
+    const theKeyword: string = this.route.snapshot.paramMap.get('keyword') as string;
+    this.productService.searchProducts(theKeyword).subscribe(
+      data => this.products = data
+    );
+  }
+
+  handleListProducts(): void {
     // Check if the "id" parameter is available
     const hasCategoryId: boolean = this.route.snapshot.paramMap.has('id');
 

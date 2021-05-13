@@ -11,6 +11,7 @@ import { HeaderComponent } from './layout/header/header.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BodyComponent } from './layout/body/body.component';
 import { ProductCategoryMenuComponent } from './components/product-category-menu/product-category-menu.component';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ProductCategoryMenuComponent } from './components/product-category-menu
     FooterComponent,
     HeaderComponent,
     BodyComponent,
-    ProductCategoryMenuComponent
+    ProductCategoryMenuComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
