@@ -1,11 +1,12 @@
-export interface Product {
-  sku: string;
-  name: string;
-  description: string;
-  unitPrice: number;
-  imageUrl: number;
-  active: boolean;
-  unitsInStock: number;
-  dataCreated: Date;
-  lastUpdate: Date;
+export class Product {
+  id: string | undefined;
+  sku: string | undefined;
+  name: string | undefined;
+  description: string | undefined;
+  unitPrice: number | undefined;
+  imageUrl: number | undefined;
+  active: boolean | undefined;
+  unitsInStock: number | undefined;
+  dataCreated: Date | undefined;
+  lastUpdate: Date | undefined;
 }

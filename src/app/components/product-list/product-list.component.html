@@ -2,8 +2,14 @@
   <div class="row">
 
     <div *ngFor="let tempProduct of products" class="col-3 m-3 border rounded shadow-sm">
-      <div><img src="{{ tempProduct.imageUrl }}" height="100%" width="100%" alt="product image"/></div>
-      <strong>{{ tempProduct.name }}</strong>
+      <div>
+        <a routerLink="/products/{{ tempProduct.id }}">
+          <img src="{{ tempProduct.imageUrl }}" height="100%" width="100%" alt="product image"/>
+        </a>
+      </div>
+      <a routerLink="/products/{{ tempProduct.id }}">
+        <strong>{{ tempProduct.name }}</strong>
+      </a>
       <div>
         <span class="mr-5">{{ tempProduct.unitPrice | currency: 'USD' }}</span>
         <span class="text-muted">Stock: {{ tempProduct.unitsInStock }}</span>

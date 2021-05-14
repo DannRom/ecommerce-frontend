@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BodyComponent } from './layout/body/body.component';
 import { ProductCategoryMenuComponent } from './components/product-category-menu/product-category-menu.component';
 import { SearchComponent } from './components/search/search.component';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SearchComponent } from './components/search/search.component';
     HeaderComponent,
     BodyComponent,
     ProductCategoryMenuComponent,
-    SearchComponent
+    SearchComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,
