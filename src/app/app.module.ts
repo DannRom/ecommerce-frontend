@@ -9,7 +9,6 @@ import { ProductService } from './services/product.service';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { AppRoutingModule } from './app-routing.module';
-import { BodyComponent } from './layout/body/body.component';
 import { ProductCategoryMenuComponent } from './components/product-category-menu/product-category-menu.component';
 import { SearchComponent } from './components/search/search.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
@@ -20,7 +19,6 @@ import { ProductDetailsComponent } from './components/product-details/product-de
     ProductListComponent,
     FooterComponent,
     HeaderComponent,
-    BodyComponent,
     ProductCategoryMenuComponent,
     SearchComponent,
     ProductDetailsComponent
