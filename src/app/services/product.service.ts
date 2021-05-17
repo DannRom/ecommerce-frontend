@@ -23,6 +23,16 @@ export class ProductService {
     );
   }
 
+  getPaginatedProductList(categoryID: number,
+                          pageNumber: number,
+                          pageSize: number): Observable<GetResponseProducts> {
+
+    const pageUrl = `${this.productsUrl}/search/findByCategoryId?id=${categoryID}`
+      + `&page=${pageNumber}&size=${pageSize}`;
+
+    return this.httpClient.get<GetResponseProducts>(pageUrl);
+  }
+
   getProduct(productId: number): Observable<Product> {
     const productUrl = `${this.productsUrl}/${productId}`;
     return this.httpClient.get<Product>(productUrl);
@@ -46,12 +56,18 @@ export class ProductService {
 // This interface will assist in unwrapping the json response.
 interface GetResponseProducts {
   _embedded: {
-    products: Product[];
+    products: Product[],
+  };
+  page: {
+    size: number,
+    totalElements: number,
+    totalPages: number,
+    number: number
   };
 }
 
 interface GetResponseProductCategory {
   _embedded: {
-    productCategory: ProductCategory[];
+    productCategory: ProductCategory[],
   };
 }

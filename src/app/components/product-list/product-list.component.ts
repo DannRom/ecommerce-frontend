@@ -10,9 +10,14 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProductListComponent implements OnInit {
 
-  products: Product[] | undefined;
-  currentCategoryId: number | undefined;
-  searchMode: boolean | undefined;
+  products: Product[] = [];
+  currentCategoryID = 1;
+  previousCategoryID = 1;
+  searchMode = false;
+
+  pageNumber = 1;
+  pageSize = 10;
+  totalElements = 0;
 
   // Inject ProductService
   constructor(private productService: ProductService,
@@ -25,7 +30,7 @@ export class ProductListComponent implements OnInit {
     });
   }
 
-  private listProducts(): void {
+  listProducts(): void {
     // check if the key word is there
     this.searchMode = this.route.snapshot.paramMap.has('keyword');
     if (this.searchMode) {
@@ -45,22 +50,23 @@ export class ProductListComponent implements OnInit {
 
   handleListProducts(): void {
     // Check if the "id" parameter is available
-    const hasCategoryId: boolean = this.route.snapshot.paramMap.has('id');
+    const categoryID = this.route.snapshot.paramMap.get('id');
+    this.currentCategoryID = categoryID == null ? 1 : +categoryID; // The plus converts string to number.
 
-    if (hasCategoryId) {
-      // Get category id and convert from string to number the "+" operator
-      // ts thinks the value might be null, even though we check for it,
-      // thus it is suppressed with the below annotation.
-      // @ts-ignore
-      this.currentCategoryId = +this.route.snapshot.paramMap.get('id');
-    } else {
-      // if no category id is available then set the id to 1 as a default
-      this.currentCategoryId = 1;
+    // Angular reuses components, therefore the page number must be reinitialized when switching categories
+    if (this.previousCategoryID !== this.currentCategoryID) {
+      this.pageNumber = 1;
     }
+    this.previousCategoryID = this.currentCategoryID;
 
-    // now get the products for the given category id
-    this.productService.getProductList(this.currentCategoryId).subscribe(
-      data => this.products = data
+    // Note the page number increment and decrement. Spring Boot uses zero based indexing for its page numbers.
+    this.productService.getPaginatedProductList(this.currentCategoryID, this.pageNumber - 1, this.pageSize).subscribe(
+      data => {
+        this.products = data._embedded.products;
+        this.pageNumber = data.page.number + 1;
+        this.pageSize = data.page.size;
+        this.totalElements = data.page.totalElements;
+      }
     );
   }
 
