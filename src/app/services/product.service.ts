@@ -16,6 +16,7 @@ export class ProductService {
   // httpClient is injected at runtime. The field is also declared by the constructor.
   constructor(private httpClient: HttpClient) {  }
 
+  // Link on Observable: https://www.stackchief.com/tutorials/JavaScript%20Observables%20in%205%20Minutes
   getProductList(theCategoryId: number): Observable<Product[]> {
     const searchUrl = `${this.productsUrl}/search/findByCategoryId?id=${theCategoryId}`;
     return this.httpClient.get<GetResponseProducts>(searchUrl).pipe(
