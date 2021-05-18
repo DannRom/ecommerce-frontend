@@ -14,7 +14,7 @@
         <span class="mr-5">{{ tempProduct.unitPrice | currency: 'USD' }}</span>
         <span class="text-muted">Stock: {{ tempProduct.unitsInStock }}</span>
       </div>
-      <button class="btn btn-primary btn-sm m-2 float-right">Add to cart</button>
+      <button (click)="addToCart(tempProduct)" class="btn btn-primary btn-sm m-2 float-right">Add to cart</button>
     </div>
 
     <!--The question mark guards against nulls/undefined values. It is called a safe navigation operator.-->
