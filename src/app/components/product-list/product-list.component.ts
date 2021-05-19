@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../common/product';
 import { ActivatedRoute } from '@angular/router';
+import { ProductInCart } from '../../common/product-in-cart';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-product-list',
@@ -20,8 +22,9 @@ export class ProductListComponent implements OnInit {
   totalElements = 0;
 
   // Inject ProductService
-  constructor(private productService: ProductService,
-              private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute,
+              private productService: ProductService,
+              private cartService: CartService) { }
 
   // Subscribe will execute in an asynchronous fashion.
   ngOnInit(): void {
@@ -72,5 +75,6 @@ export class ProductListComponent implements OnInit {
 
   addToCart(product: Product): void {
     console.log(`Name: ${product.name} Price: ${product.unitPrice}`);
+    this.cartService.addToCart(new ProductInCart(product));
   }
 }

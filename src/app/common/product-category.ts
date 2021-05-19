@@ -1,4 +1,4 @@
 export class ProductCategory {
-  id: number | undefined;
-  categoryName: string | undefined;
+  id!: number;
+  categoryName!: string;
 }
