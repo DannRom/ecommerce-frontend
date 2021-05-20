@@ -24,7 +24,7 @@ export class CartService {
     this.publishTotals();
   }
 
-  private publishTotals(): void {
+  publishTotals(): void {
     let price = 0;
     let quantity = 0;
     for (const product of this.productsInCart) {

@@ -1,0 +1,37 @@
+<div *ngIf="totalQuantity > 0" class="row justify-content-center">
+  <table class="table table-bordered mt-5 col-7">
+    <tr>
+      <th width="20%">Product Image</th>
+      <th width="50%">Product Detail</th>
+      <th width="30%"></th>
+    </tr>
+
+    <tr *ngFor="let product of productsInCart">
+      <td>
+        <div><img src="{{ product.imageUrl }}" height="100%" width="100%" alt="product image"></div>
+      </td>
+      <td>
+        <p>{{ product.name }}</p>
+        {{ product.unitPrice | currency:'USD'}}
+      </td>
+      <td>
+        <p>Quantity {{ product.quantity }}</p>
+        <p>Subtotal: {{ product.quantity * product.unitPrice | currency: 'USD'}}</p>
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="2"></td>
+      <td>
+        <strong>
+          <div>Total Quantity: {{ totalQuantity }}</div>
+          <div>Total Price: {{ totalPrice | currency:'USD'}}</div>
+        </strong>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div *ngIf="totalQuantity == 0" class="alert alert-warning m-5">
+  Shopping cart is empty.
+</div>
