@@ -24,6 +24,21 @@ export class CartService {
     this.publishTotals();
   }
 
+  removeOneFromCart(product: ProductInCart): void {
+    product.quantity--;
+    if (product.quantity === 0) {
+      const index = this.productsInCart.findIndex(tempProduct => tempProduct.id === product.id);
+      this.productsInCart.splice(index, 1);
+    }
+    this.publishTotals();
+  }
+
+  removeProductFromCart(product: ProductInCart): void {
+    const index = this.productsInCart.findIndex(tempProduct => tempProduct.id === product.id);
+    this.productsInCart.splice(index, 1);
+    this.publishTotals();
+  }
+
   publishTotals(): void {
     let price = 0;
     let quantity = 0;

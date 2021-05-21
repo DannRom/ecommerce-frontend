@@ -32,4 +32,16 @@ export class CartListComponent implements OnInit {
 
     this.cartService.publishTotals();
   }
+
+  addToCart(product: ProductInCart): void {
+    this.cartService.addToCart(product);
+  }
+
+  removeOneFromCart(product: ProductInCart): void {
+    this.cartService.removeOneFromCart(product);
+  }
+
+  removeProductFromCart(product: ProductInCart): void {
+    this.cartService.removeProductFromCart(product);
+  }
 }

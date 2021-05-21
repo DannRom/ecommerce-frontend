@@ -1,5 +1,6 @@
 <div *ngIf="totalQuantity > 0" class="row justify-content-center">
   <table class="table table-bordered mt-5 col-7">
+
     <tr>
       <th width="20%">Product Image</th>
       <th width="50%">Product Detail</th>
@@ -15,8 +16,29 @@
         {{ product.unitPrice | currency:'USD'}}
       </td>
       <td>
-        <p>Quantity {{ product.quantity }}</p>
-        <p>Subtotal: {{ product.quantity * product.unitPrice | currency: 'USD'}}</p>
+        <p>Quantity:</p>
+        <div class="row mb-2">
+          <div class="col">
+            <svg (click)="addToCart(product)" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-file-plus"
+                 viewBox="0 0 16 16">
+              <path
+                d="M8.5 6a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V10a.5.5 0 0 0 1 0V8.5H10a.5.5 0 0 0 0-1H8.5V6z"/>
+              <path
+                d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z"/>
+            </svg>
+          </div>
+          <div class="col">{{ product.quantity }}</div>
+          <div class="col">
+            <svg (click)="removeOneFromCart(product)" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                 class="bi bi-file-minus" viewBox="0 0 16 16">
+              <path d="M5.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1-.5-.5z"/>
+              <path
+                d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"/>
+            </svg>
+          </div>
+        </div>
+        <button (click)="removeProductFromCart(product)" class="btn btn-sm btn-outline-dark">Remove</button>
+        <div>Subtotal: {{ product.quantity * product.unitPrice | currency: 'USD'}}</div>
       </td>
     </tr>
 
@@ -29,6 +51,7 @@
         </strong>
       </td>
     </tr>
+
   </table>
 </div>
 
