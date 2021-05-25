@@ -14,6 +14,8 @@ import { SearchComponent } from './components/search/search.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { CartStatusComponent } from './components/cart-status/cart-status.component';
 import { CartListComponent } from './components/cart-list/cart-list.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,13 +27,15 @@ import { CartListComponent } from './components/cart-list/cart-list.component';
     SearchComponent,
     ProductDetailsComponent,
     CartStatusComponent,
-    CartListComponent
+    CartListComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,
     NgbModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]
