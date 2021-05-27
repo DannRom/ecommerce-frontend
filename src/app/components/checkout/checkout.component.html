@@ -7,33 +7,12 @@
         <span class="badge badge-secondary badge-pill">{{ totalQuantity }}</span>
       </h4>
       <ul class="list-group mb-3">
-        <li class="list-group-item d-flex justify-content-between lh-condensed">
+        <li *ngFor="let product of productsInCart" class="list-group-item d-flex justify-content-between lh-condensed">
           <div>
-            <h6 class="my-0">Product name</h6>
-            <small class="text-muted">Brief description</small>
+            <h6 class="my-0">{{ product.name }}</h6>
+            <small class="text-muted">Quantity: {{ product.quantity }}</small>
           </div>
-          <span class="text-muted">$12</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between lh-condensed">
-          <div>
-            <h6 class="my-0">Second product</h6>
-            <small class="text-muted">Brief description</small>
-          </div>
-          <span class="text-muted">$8</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between lh-condensed">
-          <div>
-            <h6 class="my-0">Third item</h6>
-            <small class="text-muted">Brief description</small>
-          </div>
-          <span class="text-muted">$5</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between bg-light">
-          <div class="text-success">
-            <h6 class="my-0">Promo code</h6>
-            <small>EXAMPLECODE</small>
-          </div>
-          <span class="text-success">-$5</span>
+          <span class="text-muted">{{ product.unitPrice }}</span>
         </li>
         <li class="list-group-item d-flex justify-content-between">
           <span>Total (USD)</span>
@@ -170,14 +149,14 @@
           </div>
           <div class="row">
             <div class="col-md-3 mb-3">
-              <label>Expiration Month</label>
+              <label>Exp. Month</label>
               <select class="custom-select d-block w-100 form-control">
                 <option value="" selected disabled>Month...</option>
                 <option *ngFor="let month of dropdownMonths">{{ month }}</option>
               </select>
             </div>
             <div class="col-md-3 mb-3">
-              <label>Expiration Year</label>
+              <label>Exp. Year</label>
               <select class="custom-select d-block w-100 form-control">
                 <option value="" selected disabled>Year...</option>
                 <option *ngFor="let year of dropdownYears">{{ year }}</option>
