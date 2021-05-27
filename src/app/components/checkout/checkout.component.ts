@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormService } from '../../services/form.service';
 
 @Component({
   selector: 'app-checkout',
@@ -9,12 +10,28 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class CheckoutComponent implements OnInit {
 
   checkoutFormGroup!: FormGroup;
-  totalPrice = 0;
-  totalQuantity = 0;
+  totalPrice = 0; // todo add total price to page.
+  totalQuantity = 0; // todo add total quantity to page
+  dropdownMonths!: number[];
+  dropdownYears!: number[];
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+              private formService: FormService) {
+  }
 
   ngOnInit(): void {
+    this.defineCheckoutFormGroup();
+
+    this.formService.getDropdownMonths().subscribe(
+      data => this.dropdownMonths = data
+    );
+
+    this.formService.getDropdownYears().subscribe(
+      data => this.dropdownYears = data
+    );
+  }
+
+  defineCheckoutFormGroup(): void {
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
         firstName: [''],

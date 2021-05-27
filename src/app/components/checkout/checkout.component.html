@@ -138,19 +138,15 @@
           </div>
         </div>
 
-        <hr class="mb-4">
+        <br>
         <div class="custom-control custom-checkbox">
           <input type="checkbox" (change)="copyBillingAddressToShippingAddress()" id="customCheck" class="custom-control-input">
           <label class="custom-control-label" for="customCheck">Shipping address is the same as my billing address</label>
         </div>
-        <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input">
-          <label class="custom-control-label">Save this information for next time</label>
-        </div>
         <hr class="mb-4">
 
         <h4 class="mb-3">Payment</h4>
-        <div formGroupName="payment">
+        <div formGroupName="paymentInfo">
           <div class="row">
             <div class="col-md-4 mb-3">
               <label>Card Type</label>
@@ -175,16 +171,16 @@
           <div class="row">
             <div class="col-md-3 mb-3">
               <label>Expiration Month</label>
-              <select class="custom-select d-block w-100">
+              <select class="custom-select d-block w-100 form-control">
                 <option value="" selected disabled>Month...</option>
-                <option>ToDo</option>
+                <option *ngFor="let month of dropdownMonths">{{ month }}</option>
               </select>
             </div>
             <div class="col-md-3 mb-3">
               <label>Expiration Year</label>
-              <select class="custom-select d-block w-100">
+              <select class="custom-select d-block w-100 form-control">
                 <option value="" selected disabled>Year...</option>
-                <option>ToDo</option>
+                <option *ngFor="let year of dropdownYears">{{ year }}</option>
               </select>
             </div>
             <div class="col-md-3 mb-3">
