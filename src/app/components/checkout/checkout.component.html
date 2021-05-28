@@ -1,6 +1,7 @@
 <div class="container mt-5">
   <div class="row">
 
+    <!-- Cart List -->
     <div class="col-md-4 order-md-2 mb-4">
       <h4 class="d-flex justify-content-between align-items-center mb-3">
         <span class="text-muted">Your cart</span>
@@ -30,8 +31,11 @@
       </form>
     </div>
 
+    <!-- Beginning of Checkout Form -->
     <div class="col-md-8 order-md-1">
       <form [formGroup]="checkoutFormGroup" (ngSubmit)="completeCheckout()">
+
+        <!-- Customer Info -->
         <h4 class="mb-3">Billing address</h4>
         <div formGroupName="customer">
           <div class="row">
@@ -52,23 +56,23 @@
           </div>
         </div>
 
+        <!-- Billing Address -->
         <div formGroupName="billingAddress">
           <div class="mb-3">
             <label>Street</label>
             <input formControlName="street" type="text" class="form-control">
           </div>
-
           <div class="row">
             <div class="col-md-4 mb-3">
               <label>Country</label>
-              <select class="custom-select d-block w-100">
+              <select formControlName="country" class="custom-select d-block w-100">
                 <option value="" selected disabled>Country...</option>
                 <option>United States</option>
               </select>
             </div>
             <div class="col-md-3 mb-3">
               <label>State</label>
-              <select class="custom-select d-block w-100">
+              <select formControlName="state" class="custom-select d-block w-100">
                 <option value="" selected disabled>State...</option>
                 <option>Texas</option>
               </select>
@@ -83,8 +87,9 @@
             </div>
           </div>
         </div>
-
         <br>
+
+        <!-- Shipping Address -->
         <h4 class="mb-3">Shipping address</h4>
         <div formGroupName="shippingAddress">
           <div class="mb-3">
@@ -94,14 +99,14 @@
           <div class="row">
             <div class="col-md-4 mb-3">
               <label>Country</label>
-              <select class="custom-select d-block w-100">
+              <select formControlName="country" class="custom-select d-block w-100">
                 <option value="" selected disabled>Country...</option>
                 <option>United States</option>
               </select>
             </div>
             <div class="col-md-3 mb-3">
               <label>State</label>
-              <select class="custom-select d-block w-100">
+              <select formControlName="state" class="custom-select d-block w-100">
                 <option value="" selected disabled>State...</option>
                 <option>Texas</option>
               </select>
@@ -116,20 +121,22 @@
             </div>
           </div>
         </div>
-
         <br>
+
+        <!-- Copy billing address into shipping address checkbox -->
         <div class="custom-control custom-checkbox">
           <input type="checkbox" (change)="copyBillingAddressToShippingAddress()" id="customCheck" class="custom-control-input">
           <label class="custom-control-label" for="customCheck">Shipping address is the same as my billing address</label>
         </div>
         <hr class="mb-4">
 
+        <!-- Payment Info -->
         <h4 class="mb-3">Payment</h4>
         <div formGroupName="paymentInfo">
           <div class="row">
             <div class="col-md-4 mb-3">
               <label>Card Type</label>
-              <select class="custom-select d-block w-100">
+              <select formControlName="cardType" class="custom-select d-block w-100">
                 <option value="" selected disabled>Type...</option>
                 <option>Visa</option>
                 <option>Mastercard</option>
@@ -139,37 +146,38 @@
           <div class="row">
             <div class="col-md-6 mb-3">
               <label>Name on card</label>
-              <input type="text" class="form-control" placeholder="">
+              <input formControlName="nameOnCard" type="text" class="form-control" placeholder="">
               <small class="text-muted">Full name as displayed on card</small>
             </div>
             <div class="col-md-6 mb-3">
               <label>Credit card number</label>
-              <input type="text" class="form-control" placeholder="">
+              <input formControlName="cardNumber" type="text" class="form-control" placeholder="">
             </div>
           </div>
           <div class="row">
             <div class="col-md-3 mb-3">
               <label>Exp. Month</label>
-              <select class="custom-select d-block w-100 form-control">
+              <select formControlName="expirationMonth" class="custom-select d-block w-100 form-control">
                 <option value="" selected disabled>Month...</option>
                 <option *ngFor="let month of dropdownMonths">{{ month }}</option>
               </select>
             </div>
             <div class="col-md-3 mb-3">
               <label>Exp. Year</label>
-              <select class="custom-select d-block w-100 form-control">
+              <select formControlName="expirationYear" class="custom-select d-block w-100 form-control">
                 <option value="" selected disabled>Year...</option>
                 <option *ngFor="let year of dropdownYears">{{ year }}</option>
               </select>
             </div>
             <div class="col-md-3 mb-3">
               <label>CVV</label>
-              <input type="text" class="form-control" placeholder="">
+              <input formControlName="securityCode" type="text" class="form-control" placeholder="">
             </div>
           </div>
         </div>
         <hr class="mb-4">
         <button class="btn btn-primary btn-lg btn-block" type="submit">Complete Checkout</button>
+
       </form>
     </div>
 

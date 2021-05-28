@@ -14,6 +14,7 @@ export class CheckoutComponent implements OnInit {
   checkoutFormGroup!: FormGroup;
   dropdownMonths!: number[];
   dropdownYears!: number[];
+
   productsInCart: ProductInCart[] = [];
   totalPrice = 0;
   totalQuantity = 0;
@@ -84,16 +85,19 @@ export class CheckoutComponent implements OnInit {
     if (element.checked) {
       this.checkoutFormGroup.controls.shippingAddress
         .setValue(this.checkoutFormGroup.controls.billingAddress.value);
-      console.log('Toggled On');
+
+      console.log('billingAddress');
+      console.log(this.checkoutFormGroup.get('billingAddress')?.value);
+      console.log('shippingAddress');
+      console.log(this.checkoutFormGroup.get('shippingAddress')?.value);
     } else {
       this.checkoutFormGroup.controls.shippingAddress.reset();
-      console.log('Off');
     }
   }
 
   completeCheckout(): void {
     console.log('handling submission');
-    console.log(this.checkoutFormGroup.get('customer')?.value);
+    console.log(this.checkoutFormGroup.value);
     console.log('The email address is ' + this.checkoutFormGroup.get('customer')?.value.email);
   }
 }
