@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormService } from '../../services/form.service';
 import { CartService } from '../../services/cart.service';
 import { ProductInCart } from '../../common/product-in-cart';
@@ -51,34 +51,58 @@ export class CheckoutComponent implements OnInit {
   defineCheckoutFormGroup(): void {
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
-        firstName: [''],
-        lastName: [''],
-        email: ['']
+        firstName: new FormControl('', [Validators.required]),
+        lastName: new FormControl('', [Validators.required]),
+        email: new FormControl('', [Validators.required, Validators.email])
       }),
       billingAddress: this.formBuilder.group({
-        street: [''],
-        city: [''],
-        state: [''],
-        country: [''],
-        zipcode: ['']
+        street: new FormControl('', [Validators.required]),
+        city: new FormControl('', [Validators.required]),
+        state: new FormControl('', [Validators.required]),
+        country: new FormControl('', [Validators.required]),
+        zipcode: new FormControl('', [Validators.required])
       }),
       shippingAddress: this.formBuilder.group({
-        street: [''],
-        city: [''],
-        state: [''],
-        country: [''],
-        zipcode: ['']
+        street: new FormControl('', [Validators.required]),
+        city: new FormControl('', [Validators.required]),
+        state: new FormControl('', [Validators.required]),
+        country: new FormControl('', [Validators.required]),
+        zipcode: new FormControl('', [Validators.required])
       }),
       paymentInfo: this.formBuilder.group({
-        cardType: [''],
-        nameOnCard: [''],
-        cardNumber: [''],
-        expirationMonth: [''],
-        expirationYear: [''],
-        securityCode: ['']
+        cardType: new FormControl('', [Validators.required]),
+        nameOnCard: new FormControl('', [Validators.required]),
+        cardNumber: new FormControl('', [Validators.required]),
+        expirationMonth: new FormControl('', [Validators.required]),
+        expirationYear: new FormControl('', [Validators.required]),
+        securityCode: new FormControl('', [Validators.required])
       })
     });
   }
+
+  get firstName(): AbstractControl | null { return this.checkoutFormGroup.get('customer.firstName'); }
+  get lastName(): AbstractControl | null { return this.checkoutFormGroup.get('customer.lastName'); }
+  get email(): AbstractControl | null { return this.checkoutFormGroup.get('customer.email'); }
+
+  get billingStreet(): AbstractControl | null { return this.checkoutFormGroup.get('billingAddress.street'); }
+  get billingCity(): AbstractControl | null { return this.checkoutFormGroup.get('billingAddress.city'); }
+  get billingState(): AbstractControl | null { return this.checkoutFormGroup.get('billingAddress.state'); }
+  get billingCountry(): AbstractControl | null { return this.checkoutFormGroup.get('billingAddress.country'); }
+  get billingZipcode(): AbstractControl | null { return this.checkoutFormGroup.get('billingAddress.zipcode'); }
+
+  get shippingStreet(): AbstractControl | null { return this.checkoutFormGroup.get('shippingAddress.street'); }
+  get shippingCity(): AbstractControl | null { return this.checkoutFormGroup.get('shippingAddress.city'); }
+  get shippingState(): AbstractControl | null { return this.checkoutFormGroup.get('shippingAddress.state'); }
+  get shippingCountry(): AbstractControl | null { return this.checkoutFormGroup.get('shippingAddress.country'); }
+  get shippingZipcode(): AbstractControl | null { return this.checkoutFormGroup.get('shippingAddress.zipcode'); }
+
+  get cardType(): AbstractControl | null { return this.checkoutFormGroup.get('paymentInfo.cardType'); }
+  get nameOnCard(): AbstractControl | null { return this.checkoutFormGroup.get('paymentInfo.nameOnCard'); }
+  get cardNumber(): AbstractControl | null { return this.checkoutFormGroup.get('paymentInfo.cardNumber'); }
+  get expirationMonth(): AbstractControl | null { return this.checkoutFormGroup.get('paymentInfo.expirationMonth'); }
+  get expirationYear(): AbstractControl | null { return this.checkoutFormGroup.get('paymentInfo.expirationYear'); }
+  get securityCode(): AbstractControl | null { return this.checkoutFormGroup.get('paymentInfo.securityCode'); }
+
 
   copyBillingAddressToShippingAddress(): void {
     const element = document.getElementById('customCheck') as HTMLInputElement;
@@ -96,8 +120,12 @@ export class CheckoutComponent implements OnInit {
   }
 
   completeCheckout(): void {
+    if (this.checkoutFormGroup.invalid) {
+      this.checkoutFormGroup.markAllAsTouched();
+    }
     console.log('handling submission');
     console.log(this.checkoutFormGroup.value);
     console.log('The email address is ' + this.checkoutFormGroup.get('customer')?.value.email);
   }
+
 }

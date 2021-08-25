@@ -42,17 +42,35 @@
             <div class="col-md-6 mb-3">
               <label>First name</label>
               <input formControlName="firstName" type="text" class="form-control">
+              <div *ngIf="firstName && firstName.invalid && (firstName.dirty || firstName.touched)" class="text-danger">
+                <div *ngIf="firstName.errors && firstName.errors.required">
+                  Please enter first name
+                </div>
+              </div>
             </div>
 
             <div class="col-md-6 mb-3">
               <label>Last name</label>
               <input formControlName="lastName" type="text" class="form-control">
+              <div *ngIf="lastName && lastName.invalid && (lastName.dirty || lastName.touched)" class="text-danger">
+                <div *ngIf="lastName.errors && lastName.errors.required">
+                  Please enter last name
+                </div>
+              </div>
             </div>
           </div>
 
           <div class="mb-3">
             <label>Email</label>
             <input formControlName="email" type="email" class="form-control" placeholder="name@domain.com">
+            <div *ngIf="email && email.invalid && email.errors && (email.dirty || email.touched)" class="text-danger">
+              <div *ngIf="email.errors.required">
+                Please enter an email
+              </div>
+              <div *ngIf="email.errors.email">
+                Please enter a valid email
+              </div>
+            </div>
           </div>
         </div>
 
@@ -61,7 +79,13 @@
           <div class="mb-3">
             <label>Street</label>
             <input formControlName="street" type="text" class="form-control">
+            <div *ngIf="billingStreet && billingStreet.invalid && (billingStreet.dirty || billingStreet.touched)" class="text-danger">
+              <div *ngIf="billingStreet.errors && billingStreet.errors.required">
+                Please enter street address
+              </div>
+            </div>
           </div>
+
           <div class="row">
             <div class="col-md-4 mb-3">
               <label>Country</label>
@@ -69,21 +93,44 @@
                 <option value="" selected disabled>Country...</option>
                 <option>United States</option>
               </select>
+              <div *ngIf="billingCountry && billingCountry.invalid && (billingCountry.dirty || billingCountry.touched)" class="text-danger">
+                <div *ngIf="billingCountry.errors && billingCountry.errors.required">
+                  Please enter country
+                </div>
+              </div>
             </div>
+
             <div class="col-md-3 mb-3">
               <label>State</label>
               <select formControlName="state" class="custom-select d-block w-100">
                 <option value="" selected disabled>State...</option>
                 <option>Texas</option>
               </select>
+              <div *ngIf="billingState && billingState.invalid && (billingState.dirty || billingState.touched)" class="text-danger">
+                <div *ngIf="billingState.errors && billingState.errors.required">
+                  Please enter state
+                </div>
+              </div>
             </div>
+
             <div class="col-md-3 mb-3">
               <label>City</label>
               <input formControlName="city" type="text" class="form-control" >
+              <div *ngIf="billingCity && billingCity.invalid && (billingCity.dirty || billingCity.touched)" class="text-danger">
+                <div *ngIf="billingCity.errors && billingCity.errors.required">
+                  Please enter city
+                </div>
+              </div>
             </div>
+
             <div class="col-md-2 mb-3">
               <label>Zip</label>
               <input formControlName="zipcode" type="text" class="form-control" placeholder="#####">
+              <div *ngIf="billingZipcode && billingZipcode.invalid && (billingZipcode.dirty || billingZipcode.touched)" class="text-danger">
+                <div *ngIf="billingZipcode.errors && billingZipcode.errors.required">
+                  Please enter zipcode
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -95,7 +142,13 @@
           <div class="mb-3">
             <label>Street</label>
             <input formControlName="street" type="text" class="form-control">
+            <div *ngIf="shippingStreet && shippingStreet.invalid && (shippingStreet.dirty || shippingStreet.touched)" class="text-danger">
+              <div *ngIf="shippingStreet.errors && shippingStreet.errors.required">
+                Please enter street address
+              </div>
+            </div>
           </div>
+
           <div class="row">
             <div class="col-md-4 mb-3">
               <label>Country</label>
@@ -103,21 +156,44 @@
                 <option value="" selected disabled>Country...</option>
                 <option>United States</option>
               </select>
+              <div *ngIf="shippingCountry && shippingCountry.invalid && (shippingCountry.dirty || shippingCountry.touched)" class="text-danger">
+                <div *ngIf="shippingCountry.errors && shippingCountry.errors.required">
+                  Please enter country
+                </div>
+              </div>
             </div>
+
             <div class="col-md-3 mb-3">
               <label>State</label>
               <select formControlName="state" class="custom-select d-block w-100">
                 <option value="" selected disabled>State...</option>
                 <option>Texas</option>
               </select>
+              <div *ngIf="shippingState && shippingState.invalid && (shippingState.dirty || shippingState.touched)" class="text-danger">
+                <div *ngIf="shippingState.errors && shippingState.errors.required">
+                  Please enter state
+                </div>
+              </div>
             </div>
+
             <div class="col-md-3 mb-3">
               <label>City</label>
               <input formControlName="city" type="text" class="form-control" placeholder="" required="">
+              <div *ngIf="shippingCity && shippingCity.invalid && (shippingCity.dirty || shippingCity.touched)" class="text-danger">
+                <div *ngIf="shippingCity.errors && shippingCity.errors.required">
+                  Please enter city
+                </div>
+              </div>
             </div>
+
             <div class="col-md-2 mb-3">
               <label>Zip</label>
               <input formControlName="zipcode" type="text" class="form-control" placeholder="#####" required="">
+              <div *ngIf="shippingZipcode && shippingZipcode.invalid && (shippingZipcode.dirty || shippingZipcode.touched)" class="text-danger">
+                <div *ngIf="shippingZipcode.errors && shippingZipcode.errors.required">
+                  Please enter zipcode
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -141,6 +217,11 @@
                 <option>Visa</option>
                 <option>Mastercard</option>
               </select>
+              <div *ngIf="cardType && cardType.invalid && (cardType.dirty || cardType.touched)" class="text-danger">
+                <div *ngIf="cardType.errors && cardType.errors.required">
+                  Please enter card type
+                </div>
+              </div>
             </div>
           </div>
           <div class="row">
@@ -148,10 +229,20 @@
               <label>Name on card</label>
               <input formControlName="nameOnCard" type="text" class="form-control" placeholder="">
               <small class="text-muted">Full name as displayed on card</small>
+              <div *ngIf="nameOnCard && nameOnCard.invalid && (nameOnCard.dirty || nameOnCard.touched)" class="text-danger">
+                <div *ngIf="nameOnCard.errors && nameOnCard.errors.required">
+                  Please enter name on card
+                </div>
+              </div>
             </div>
             <div class="col-md-6 mb-3">
               <label>Credit card number</label>
               <input formControlName="cardNumber" type="text" class="form-control" placeholder="">
+              <div *ngIf="cardNumber && cardNumber.invalid && (cardNumber.dirty || cardNumber.touched)" class="text-danger">
+                <div *ngIf="cardNumber.errors && cardNumber.errors.required">
+                  Please enter card number
+                </div>
+              </div>
             </div>
           </div>
           <div class="row">
@@ -161,6 +252,11 @@
                 <option value="" selected disabled>Month...</option>
                 <option *ngFor="let month of dropdownMonths">{{ month }}</option>
               </select>
+              <div *ngIf="expirationMonth && expirationMonth.invalid && (expirationMonth.dirty || expirationMonth.touched)" class="text-danger">
+                <div *ngIf="expirationMonth.errors && expirationMonth.errors.required">
+                  Please enter card expiration month
+                </div>
+              </div>
             </div>
             <div class="col-md-3 mb-3">
               <label>Exp. Year</label>
@@ -168,10 +264,20 @@
                 <option value="" selected disabled>Year...</option>
                 <option *ngFor="let year of dropdownYears">{{ year }}</option>
               </select>
+              <div *ngIf="expirationYear && expirationYear.invalid && (expirationYear.dirty || expirationYear.touched)" class="text-danger">
+                <div *ngIf="expirationYear.errors && expirationYear.errors.required">
+                  Please enter card expiration year
+                </div>
+              </div>
             </div>
             <div class="col-md-3 mb-3">
               <label>CVV</label>
               <input formControlName="securityCode" type="text" class="form-control" placeholder="">
+              <div *ngIf="securityCode && securityCode.invalid && (securityCode.dirty || securityCode.touched)" class="text-danger">
+                <div *ngIf="securityCode.errors && securityCode.errors.required">
+                  Please enter card security code
+                </div>
+              </div>
             </div>
           </div>
         </div>
