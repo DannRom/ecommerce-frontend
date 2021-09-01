@@ -125,7 +125,7 @@
 
             <div class="col-md-2 mb-3">
               <label>Zip</label>
-              <input formControlName="zipcode" type="text" class="form-control" placeholder="#####">
+              <input formControlName="zipCode" type="text" class="form-control" placeholder="#####">
               <div *ngIf="billingZipcode && billingZipcode.invalid && (billingZipcode.dirty || billingZipcode.touched)" class="text-danger">
                 <div *ngIf="billingZipcode.errors && billingZipcode.errors.required">
                   Please enter zipcode
@@ -188,7 +188,7 @@
 
             <div class="col-md-2 mb-3">
               <label>Zip</label>
-              <input formControlName="zipcode" type="text" class="form-control" placeholder="#####" required="">
+              <input formControlName="zipCode" type="text" class="form-control" placeholder="#####" required="">
               <div *ngIf="shippingZipcode && shippingZipcode.invalid && (shippingZipcode.dirty || shippingZipcode.touched)" class="text-danger">
                 <div *ngIf="shippingZipcode.errors && shippingZipcode.errors.required">
                   Please enter zipcode
