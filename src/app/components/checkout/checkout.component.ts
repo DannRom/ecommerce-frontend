@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormService } from '../../services/form.service';
 import { CartService } from '../../services/cart.service';
-import { ProductInCart } from '../../common/product-in-cart';
+import { ProductInCart } from '../../model/product-in-cart';
 import { CheckoutService } from '../../services/checkout.service';
 import { Router } from '@angular/router';
-import { Order } from '../../common/order';
-import { OrderItem } from '../../common/order-item';
-import { Purchase } from '../../common/purchase';
+import { Order } from '../../model/order';
+import { OrderItem } from '../../model/order-item';
+import { Purchase } from '../../model/purchase';
 
 const BILLING_ADDRESS = 'billingAddress';
 const SHIPPING_ADDRESS = 'shippingAddress';
