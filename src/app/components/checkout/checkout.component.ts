@@ -5,9 +5,7 @@ import { CartService } from '../../services/cart.service';
 import { ProductInCart } from '../../model/product-in-cart';
 import { CheckoutService } from '../../services/checkout.service';
 import { Router } from '@angular/router';
-import { Order } from '../../model/order';
-import { OrderItem } from '../../model/order-item';
-import { Purchase } from '../../model/purchase';
+import { Order, OrderItem, Purchase } from './checkout.entity';
 
 const BILLING_ADDRESS = 'billingAddress';
 const SHIPPING_ADDRESS = 'shippingAddress';
@@ -207,8 +205,8 @@ export class CheckoutComponent implements OnInit {
     order.totalQuantity = this.totalQuantity;
     purchase.order = order;
 
-    const cartItems = this.cartService.productsInCart;
-    purchase.orderItems = cartItems.map(item => new OrderItem(item));
+    const productsInCart = this.cartService.productsInCart;
+    purchase.orderItems = productsInCart.map(item => new OrderItem(item));
 
     this.checkoutService.placeOrder(purchase).subscribe({
       next: response => { // If successful
