@@ -36,21 +36,21 @@ export class CheckoutComponent implements OnInit {
     this.defineCheckoutFormGroup();
 
     this.formService.getDropdownMonths().subscribe(
-      data => this.dropdownMonths = data
+      months => this.dropdownMonths = months
     );
 
     this.formService.getDropdownYears().subscribe(
-      data => this.dropdownYears = data
+      years => this.dropdownYears = years
     );
 
     this.productsInCart = this.cartService.productsInCart;
 
     this.cartService.totalQuantity.subscribe(
-      data => this.totalQuantity = data
+      quantity => this.totalQuantity = quantity
     );
 
     this.cartService.totalPrice.subscribe(
-      data => this.totalPrice = data
+      price => this.totalPrice = price
     );
 
     this.cartService.publishTotals();

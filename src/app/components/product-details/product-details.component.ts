@@ -29,7 +29,7 @@ export class ProductDetailsComponent implements OnInit {
     // @ts-ignore
     const productId: number = +this.route.snapshot.paramMap.get('id');
     this.productService.getProduct(productId).subscribe(
-      data => this.product = data
+      product => this.product = product
     );
   }
 

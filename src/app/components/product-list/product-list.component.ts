@@ -47,7 +47,7 @@ export class ProductListComponent implements OnInit {
   handleSearchProducts(): void {
     const theKeyword: string = this.route.snapshot.paramMap.get('keyword') as string;
     this.productService.searchProducts(theKeyword).subscribe(
-      data => this.products = data
+      products => this.products = products
     );
   }
 
@@ -64,11 +64,11 @@ export class ProductListComponent implements OnInit {
 
     // Note the page number increment and decrement. Spring Boot uses zero based indexing for its page numbers.
     this.productService.getPaginatedProductList(this.currentCategoryID, this.pageNumber - 1, this.pageSize).subscribe(
-      data => {
-        this.products = data._embedded.products;
-        this.pageNumber = data.page.number + 1;
-        this.pageSize = data.page.size;
-        this.totalElements = data.page.totalElements;
+      page => {
+        this.products = page._embedded.products;
+        this.pageNumber = page.page.number + 1;
+        this.pageSize = page.page.size;
+        this.totalElements = page.page.totalElements;
       }
     );
   }

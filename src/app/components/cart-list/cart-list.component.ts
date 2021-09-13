@@ -23,11 +23,11 @@ export class CartListComponent implements OnInit {
     this.productsInCart = this.cartService.productsInCart;
 
     this.cartService.totalPrice.subscribe(
-      data => this.totalPrice = data
+      price => this.totalPrice = price
     );
 
     this.cartService.totalQuantity.subscribe(
-      data => this.totalQuantity = data
+      quantity => this.totalQuantity = quantity
     );
 
     this.cartService.publishTotals();
