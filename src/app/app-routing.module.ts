@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProductListComponent } from './components/product-list/product-list.component';
-import { ProductDetailsComponent } from './components/product-details/product-details.component';
-import { CartListComponent } from './components/cart-list/cart-list.component';
-import { CheckoutComponent } from './components/checkout/checkout.component';
+import { ProductListComponent } from './pages/product-list/product-list.component';
+import { ProductDetailsComponent } from './pages/product-details/product-details.component';
+import { CartListComponent } from './pages/cart-list/cart-list.component';
+import { CheckoutComponent } from './pages/checkout/checkout.component';
 
 const routes: Routes = [
   {path: 'checkout', component: CheckoutComponent},
