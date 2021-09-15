@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { FormService } from '../../services/form.service';
 import { CartService } from '../../services/cart.service';
 import { ProductInCart } from '../../model/product-in-cart';
 import { CheckoutService } from '../../services/checkout.service';
 import { Router } from '@angular/router';
 import { Order, OrderItem, Purchase } from './checkout.entity';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+
 
 const BILLING_ADDRESS = 'billingAddress';
 const SHIPPING_ADDRESS = 'shippingAddress';
@@ -18,15 +18,14 @@ const CUSTOMER = 'customer';
 })
 export class CheckoutComponent implements OnInit {
   checkoutFormGroup!: FormGroup;
-  dropdownMonths!: number[];
-  dropdownYears!: number[];
+  dropdownMonths: number[] = Array.from(new Array(12), (_, i) => i + 1);
+  dropdownYears: number[] = Array.from(new Array(10), (_, i) => i + new Date().getFullYear());
 
   productsInCart: ProductInCart[] = [];
   totalPrice = 0;
   totalQuantity = 0;
 
   constructor(private formBuilder: FormBuilder,
-              private formService: FormService,
               private cartService: CartService,
               private checkoutService: CheckoutService,
               private router: Router) {
@@ -34,14 +33,6 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.defineCheckoutFormGroup();
-
-    this.formService.getDropdownMonths().subscribe(
-      months => this.dropdownMonths = months
-    );
-
-    this.formService.getDropdownYears().subscribe(
-      years => this.dropdownYears = years
-    );
 
     this.productsInCart = this.cartService.productsInCart;
 
@@ -193,14 +184,14 @@ export class CheckoutComponent implements OnInit {
     purchase.customer = this.checkoutFormGroup.controls[CUSTOMER].value;
 
     purchase.billingAddress = this.checkoutFormGroup.controls[BILLING_ADDRESS].value;
-    purchase.billingAddress.state = JSON.parse(JSON.stringify(purchase.billingAddress.state)); // Errors can start at this line
+    purchase.billingAddress.state = JSON.parse(JSON.stringify(purchase.billingAddress.state));
     purchase.billingAddress.country = JSON.parse(JSON.stringify(purchase.billingAddress.country));
 
     purchase.shippingAddress = this.checkoutFormGroup.controls[SHIPPING_ADDRESS].value;
     purchase.shippingAddress.state = JSON.parse(JSON.stringify(purchase.shippingAddress.state));
     purchase.shippingAddress.country = JSON.parse(JSON.stringify(purchase.shippingAddress.country));
 
-    const order = new Order(); // if not const, then use let
+    const order = new Order();
     order.totalPrice = this.totalPrice;
     order.totalQuantity = this.totalQuantity;
     purchase.order = order;
@@ -209,11 +200,11 @@ export class CheckoutComponent implements OnInit {
     purchase.orderItems = productsInCart.map(item => new OrderItem(item));
 
     this.checkoutService.placeOrder(purchase).subscribe({
-      next: response => { // If successful
+      next: response => {
         alert(`Your order has been received.\nTracking Number:  ${response.orderTrackingNumber}`);
         this.resetCart();
       },
-      error: error => { // If failure
+      error: error => {
         alert(`An error occurred: ${error.message}`);
       }
     });
@@ -224,6 +215,6 @@ export class CheckoutComponent implements OnInit {
     this.cartService.totalQuantity.next(0);
     this.cartService.totalPrice.next(0);
     this.checkoutFormGroup.reset();
-    this.router.navigateByUrl('/products');
+    this.router.navigateByUrl('/products').then(r => r); // empty response for navigateByUrl promise.
   }
 }

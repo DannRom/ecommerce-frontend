@@ -34,19 +34,16 @@ export class ProductListComponent implements OnInit {
   }
 
   listProducts(): void {
-    // check if the key word is there
-    this.searchMode = this.route.snapshot.paramMap.has('keyword');
-    if (this.searchMode) {
+    if (this.route.snapshot.paramMap.has('keyword')) {
       this.handleSearchProducts();
-    }
-    else {
+    } else {
       this.handleListProducts();
     }
   }
 
   handleSearchProducts(): void {
-    const theKeyword: string = this.route.snapshot.paramMap.get('keyword') as string;
-    this.productService.searchProducts(theKeyword).subscribe(
+    const key: string = this.route.snapshot.paramMap.get('keyword') as string;
+    this.productService.searchProducts(key).subscribe(
       products => this.products = products
     );
   }
