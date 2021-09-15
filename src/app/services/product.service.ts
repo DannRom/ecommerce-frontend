@@ -5,6 +5,24 @@ import { map } from 'rxjs/operators';
 import { Product } from '../model/product';
 import { ProductCategory } from '../model/product-category';
 
+interface GetResponseProducts {
+  _embedded: {
+    products: Product[],
+  };
+  page: {
+    size: number,
+    totalElements: number,
+    totalPages: number,
+    number: number
+  };
+}
+
+interface GetResponseProductCategory {
+  _embedded: {
+    productCategory: ProductCategory[],
+  };
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -54,21 +72,3 @@ export class ProductService {
 
 }
 
-// This interface will assist in unwrapping the json response.
-interface GetResponseProducts {
-  _embedded: {
-    products: Product[],
-  };
-  page: {
-    size: number,
-    totalElements: number,
-    totalPages: number,
-    number: number
-  };
-}
-
-interface GetResponseProductCategory {
-  _embedded: {
-    productCategory: ProductCategory[],
-  };
-}
