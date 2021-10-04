@@ -34,10 +34,11 @@ export class OrderItem {
   }
 }
 
-export class Purchase {
+export class Transaction {
   customer!: Customer;
   billingAddress!: Address;
   shippingAddress!: Address;
   order!: Order;
   orderItems!: OrderItem[];
 }
+

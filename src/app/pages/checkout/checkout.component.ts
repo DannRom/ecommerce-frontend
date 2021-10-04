@@ -3,7 +3,7 @@ import { CartService } from '../../services/cart.service';
 import { ProductInCart } from '../../model/product-in-cart';
 import { CheckoutService } from '../../services/checkout.service';
 import { Router } from '@angular/router';
-import { Order, OrderItem, Purchase } from './checkout.entity';
+import { Order, OrderItem, Transaction } from './checkout.entity';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 
@@ -155,7 +155,6 @@ export class CheckoutComponent implements OnInit {
     return this.checkoutFormGroup.get('paymentInfo.securityCode');
   }
 
-
   copyBillingAddressToShippingAddress(): void {
     const element = document.getElementById('customCheck') as HTMLInputElement;
     if (element.checked) {
@@ -180,26 +179,26 @@ export class CheckoutComponent implements OnInit {
     console.log(this.checkoutFormGroup.value);
     console.log('The email address is ' + this.checkoutFormGroup.get('customer')?.value.email);
 
-    const purchase = new Purchase();
-    purchase.customer = this.checkoutFormGroup.controls[CUSTOMER].value;
+    const transaction = new Transaction();
+    transaction.customer = this.checkoutFormGroup.controls[CUSTOMER].value;
 
-    purchase.billingAddress = this.checkoutFormGroup.controls[BILLING_ADDRESS].value;
-    purchase.billingAddress.state = JSON.parse(JSON.stringify(purchase.billingAddress.state));
-    purchase.billingAddress.country = JSON.parse(JSON.stringify(purchase.billingAddress.country));
+    transaction.billingAddress = this.checkoutFormGroup.controls[BILLING_ADDRESS].value;
+    transaction.billingAddress.state = JSON.parse(JSON.stringify(transaction.billingAddress.state));
+    transaction.billingAddress.country = JSON.parse(JSON.stringify(transaction.billingAddress.country));
 
-    purchase.shippingAddress = this.checkoutFormGroup.controls[SHIPPING_ADDRESS].value;
-    purchase.shippingAddress.state = JSON.parse(JSON.stringify(purchase.shippingAddress.state));
-    purchase.shippingAddress.country = JSON.parse(JSON.stringify(purchase.shippingAddress.country));
+    transaction.shippingAddress = this.checkoutFormGroup.controls[SHIPPING_ADDRESS].value;
+    transaction.shippingAddress.state = JSON.parse(JSON.stringify(transaction.shippingAddress.state));
+    transaction.shippingAddress.country = JSON.parse(JSON.stringify(transaction.shippingAddress.country));
 
     const order = new Order();
     order.totalPrice = this.totalPrice;
     order.totalQuantity = this.totalQuantity;
-    purchase.order = order;
+    transaction.order = order;
 
     const productsInCart = this.cartService.productsInCart;
-    purchase.orderItems = productsInCart.map(item => new OrderItem(item));
+    transaction.orderItems = productsInCart.map(item => new OrderItem(item));
 
-    this.checkoutService.placeOrder(purchase).subscribe({
+    this.checkoutService.placeOrder(transaction).subscribe({
       next: response => {
         alert(`Your order has been received.\nTracking Number:  ${response.orderTrackingNumber}`);
         this.resetCart();
