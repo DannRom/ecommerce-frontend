@@ -212,72 +212,42 @@
           <div class="row">
             <div class="col-md-4 mb-3">
               <label>Card Type</label>
-              <select formControlName="cardType" class="custom-select d-block w-100">
+              <select class="custom-select d-block w-100" disabled>
                 <option value="" selected disabled>Type...</option>
                 <option>Visa</option>
                 <option>Mastercard</option>
               </select>
-              <div *ngIf="cardType && cardType.invalid && (cardType.dirty || cardType.touched)" class="text-danger">
-                <div *ngIf="cardType.errors && cardType.errors.required">
-                  Please enter card type
-                </div>
-              </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-6 mb-3">
               <label>Name on card</label>
-              <input formControlName="nameOnCard" type="text" class="form-control" placeholder="">
+              <input type="text" class="form-control" placeholder="" disabled>
               <small class="text-muted">Full name as displayed on card</small>
-              <div *ngIf="nameOnCard && nameOnCard.invalid && (nameOnCard.dirty || nameOnCard.touched)" class="text-danger">
-                <div *ngIf="nameOnCard.errors && nameOnCard.errors.required">
-                  Please enter name on card
-                </div>
-              </div>
             </div>
             <div class="col-md-6 mb-3">
               <label>Credit card number</label>
-              <input formControlName="cardNumber" type="text" class="form-control" placeholder="">
-              <div *ngIf="cardNumber && cardNumber.invalid && (cardNumber.dirty || cardNumber.touched)" class="text-danger">
-                <div *ngIf="cardNumber.errors && cardNumber.errors.required">
-                  Please enter card number
-                </div>
-              </div>
+              <input type="text" class="form-control" placeholder="" disabled>
             </div>
           </div>
           <div class="row">
             <div class="col-md-3 mb-3">
               <label>Exp. Month</label>
-              <select formControlName="expirationMonth" class="custom-select d-block w-100 form-control">
+              <select class="custom-select d-block w-100 form-control" disabled>
                 <option value="" selected disabled>Month...</option>
                 <option *ngFor="let month of dropdownMonths">{{ month }}</option>
               </select>
-              <div *ngIf="expirationMonth && expirationMonth.invalid && (expirationMonth.dirty || expirationMonth.touched)" class="text-danger">
-                <div *ngIf="expirationMonth.errors && expirationMonth.errors.required">
-                  Please enter card expiration month
-                </div>
-              </div>
             </div>
             <div class="col-md-3 mb-3">
               <label>Exp. Year</label>
-              <select formControlName="expirationYear" class="custom-select d-block w-100 form-control">
+              <select class="custom-select d-block w-100 form-control" disabled>
                 <option value="" selected disabled>Year...</option>
                 <option *ngFor="let year of dropdownYears">{{ year }}</option>
               </select>
-              <div *ngIf="expirationYear && expirationYear.invalid && (expirationYear.dirty || expirationYear.touched)" class="text-danger">
-                <div *ngIf="expirationYear.errors && expirationYear.errors.required">
-                  Please enter card expiration year
-                </div>
-              </div>
             </div>
             <div class="col-md-3 mb-3">
               <label>CVV</label>
-              <input formControlName="securityCode" type="text" class="form-control" placeholder="">
-              <div *ngIf="securityCode && securityCode.invalid && (securityCode.dirty || securityCode.touched)" class="text-danger">
-                <div *ngIf="securityCode.errors && securityCode.errors.required">
-                  Please enter card security code
-                </div>
-              </div>
+              <input type="text" class="form-control" placeholder="" disabled>
             </div>
           </div>
         </div>

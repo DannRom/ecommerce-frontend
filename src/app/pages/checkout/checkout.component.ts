@@ -68,14 +68,6 @@ export class CheckoutComponent implements OnInit {
         country: new FormControl('', [Validators.required]),
         zipCode: new FormControl('', [Validators.required])
       }),
-      paymentInfo: this.formBuilder.group({
-        cardType: new FormControl('', [Validators.required]),
-        nameOnCard: new FormControl('', [Validators.required]),
-        cardNumber: new FormControl('', [Validators.required]),
-        expirationMonth: new FormControl('', [Validators.required]),
-        expirationYear: new FormControl('', [Validators.required]),
-        securityCode: new FormControl('', [Validators.required])
-      })
     });
   }
 
@@ -129,30 +121,6 @@ export class CheckoutComponent implements OnInit {
 
   get shippingZipcode(): AbstractControl | null {
     return this.checkoutFormGroup.get('shippingAddress.zipCode');
-  }
-
-  get cardType(): AbstractControl | null {
-    return this.checkoutFormGroup.get('paymentInfo.cardType');
-  }
-
-  get nameOnCard(): AbstractControl | null {
-    return this.checkoutFormGroup.get('paymentInfo.nameOnCard');
-  }
-
-  get cardNumber(): AbstractControl | null {
-    return this.checkoutFormGroup.get('paymentInfo.cardNumber');
-  }
-
-  get expirationMonth(): AbstractControl | null {
-    return this.checkoutFormGroup.get('paymentInfo.expirationMonth');
-  }
-
-  get expirationYear(): AbstractControl | null {
-    return this.checkoutFormGroup.get('paymentInfo.expirationYear');
-  }
-
-  get securityCode(): AbstractControl | null {
-    return this.checkoutFormGroup.get('paymentInfo.securityCode');
   }
 
   copyBillingAddressToShippingAddress(): void {
